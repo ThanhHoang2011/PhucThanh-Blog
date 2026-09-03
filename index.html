@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smash & Drive | Phúc Thanh's Badminton Story</title>
+  <style>
+    :root {
+      --primary-green: #059669;
+      --vibrant-teal: #06b6d4;
+      --electric-purple: #8b5cf6;
+      --gold-yellow: #f59e0b;
+      --sunset-pink: #ec4899;
+      --dark-navy: #0f172a;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Badminton Visual Background Overlay */
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--dark-navy);
+      background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(6, 78, 59, 0.88)),
+                  url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80&w=1920') center/cover fixed no-repeat;
+      min-height: 100vh;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid var(--primary-green);
+    }
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--gold-yellow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-yellow);
+    }
+
+    /* Hero Banner Header */
+    header {
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.88), rgba(139, 92, 246, 0.88)),
+                  url('https://images.unsplash.com/photo-1521537634581-0dced2efa2a3?auto=format&fit=crop&q=80&w=1200') center/cover;
+      color: #ffffff;
+      padding: 70px 20px;
+      text-align: center;
+      border-bottom: 6px solid var(--gold-yellow);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      font-size: 1.25rem;
+      color: #fef08a;
+      font-weight: 600;
+    }
+
+    .league-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--gold-yellow);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* Container & Cards */
+    .container {
+      max-width: 950px;
+      margin: 30px auto 50px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 16px;
+      padding: 35px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+    }
+
+    .card-green::before { background: linear-gradient(180deg, var(--primary-green), var(--vibrant-teal)); }
+    .card-purple::before { background: linear-gradient(180deg, var(--electric-purple), var(--sunset-pink)); }
+    .card-yellow::before { background: linear-gradient(180deg, var(--gold-yellow), #f97316); }
+    .card-blue::before { background: linear-gradient(180deg, #3b82f6, var(--vibrant-teal)); }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-green h2 { color: #047857; }
+    .card-purple h2 { color: #6d28d9; }
+    .card-yellow h2 { color: #d97706; }
+    .card-blue h2 { color: #1d4ed8; }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+      color: #334155;
+    }
+
+    /* SVG Diagram Box */
+    .svg-box {
+      width: 100%;
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin: 25px 0;
+    }
+
+    .stat-card {
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .stat-1 { background: linear-gradient(135deg, #10b981, #059669); }
+    .stat-2 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .stat-3 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+
+    .stat-card .number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Shot Mechanics Grid */
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .shot-card {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 18px;
+      border-top: 4px solid var(--vibrant-teal);
+    }
+
+    .shot-card h3 {
+      color: #0f766e;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .shot-card ul {
+      padding-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    /* Rating Section */
+    .rating-wrapper {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .star-rating {
+      display: inline-flex;
+      gap: 12px;
+      font-size: 2.5rem;
+      cursor: pointer;
+      margin: 15px 0;
+    }
+
+    .star {
+      color: #cbd5e1;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .star:hover,
+    .star.active {
+      color: var(--gold-yellow);
+      transform: scale(1.15);
+    }
+
+    .rating-status {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #047857;
+      min-height: 28px;
+    }
+
+    /* Interactive Quiz Styling */
+    .quiz-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-question {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--dark-navy);
+      margin-bottom: 12px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--primary-green);
+      background: #f0fdf4;
+    }
+
+    .quiz-option.selected {
+      border-color: var(--electric-purple);
+      background: #f3e8ff;
+      color: #6d28d9;
+    }
+
+    .btn-submit {
+      background: linear-gradient(90deg, #059669, #06b6d4);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+    }
+
+    .quiz-score {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--dark-navy);
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">🏸 Phúc Thanh <span>Badminton</span></a>
+      <ul class="nav-links">
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#mechanics">Contact Mechanics</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header>
+    <h1>How Badminton Changed My Life</h1>
+    <p>From playing chess to dominating the badminton court</p>
+    <div class="league-badges">
+      <span class="badge">🏆 BWF World Tour Inspired</span>
+      <span class="badge">⚡ 400+ km/h Smash Physics</span>
+      <span class="badge">🥇 Stage 10 IGCSE Project</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section id="intro" class="card card-green">
+      <h2>🏸 Introduction & Origin Story</h2>
+      <p>Did you know that over 300 million people worldwide play badminton, with China standing as one of the most dominant countries in the history of the sport? My journey into badminton started when I was struggling with competitive chess and felt the urge to try something completely new and energetic.</p>
+      <p>Seeing my interest, my coach introduced me to badminton. Little did I know that within just three years, I would transition into competitive play and start winning tournaments.</p>
+    </section>
+
+    <section id="rules" class="card card-yellow">
+      <h2>⚡ How Badminton Works: Rules & Basics</h2>
+      <p>For those unfamiliar with badminton, it is a fast-paced racket sport played either as singles (one-on-one) or doubles (two-on-two). While it shares similarities with tennis and pickleball, badminton uses a shuttlecock instead of a ball. The main objective is simple: keep the shuttlecock from touching the ground on your side of the court while driving it over the net into your opponent's court.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card stat-1">
+          <span class="number">21</span>
+          Points needed to win a standard set
+        </div>
+        <div class="stat-card stat-2">
+          <span class="number">2-Point</span>
+          Lead required during a 20–20 tiebreak
+        </div>
+        <div class="stat-card stat-3">
+          <span class="number">30</span>
+          Maximum score cap in a high-intensity tiebreak
+        </div>
+      </div>
+    </section>
+
+    <section id="mechanics" class="card card-purple">
+      <h2>🎯 Racket Contact Point & Shot Physics</h2>
+      <p>Striking the shuttlecock at the peak of your reach creates steep downward angles, making smash shots almost impossible to return.</p>
+
+      <div class="svg-box">
+        <svg viewBox="0 0 600 260" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="230" width="560" height="8" fill="#059669" rx="4"/>
+          <text x="300" y="252" text-anchor="middle" fill="#047857" font-weight="bold" font-size="11">Court Surface</text>
+
+          <line x1="450" y1="230" x2="450" y2="100" stroke="#0f172a" stroke-width="4"/>
+          <polygon points="450,100 450,150 445,150 445,100" fill="#94a3b8" opacity="0.6"/>
+
+          <circle cx="200" cy="45" r="14" fill="#ec4899" opacity="0.25"/>
+          <circle cx="200" cy="45" r="7" fill="#ec4899"/>
+          <text x="200" y="25" text-anchor="middle" fill="#db2777" font-weight="bold" font-size="12">Peak Contact Point (Smash)</text>
+
+          <line x1="160" y1="100" x2="195" y2="50" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="208" cy="40" rx="18" ry="11" fill="none" stroke="#8b5cf6" stroke-width="3" transform="rotate(-30, 208, 40)"/>
+
+          <path d="M 205 45 Q 320 110 440 220" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="6,6"/>
+          <polygon points="440,220 430,210 435,222" fill="#f59e0b"/>
+
+          <path d="M 205 45 Q 350 90 460 160" fill="none" stroke="#06b6d4" stroke-width="3" stroke-dasharray="4,4"/>
+          <text x="360" y="80" fill="#0891b2" font-size="11" font-weight="bold">Drop Shot Path</text>
+          <text x="310" y="140" fill="#d97706" font-size="11" font-weight="bold">Smash (Steep Downward Angle)</text>
+        </svg>
+      </div>
+
+      <div class="shot-grid">
+        <div class="shot-card">
+          <h3>💥 Smash</h3>
+          <ul>
+            <li><strong>Contact:</strong> Highest peak overhead</li>
+            <li><strong>Action:</strong> Wrist snap downward</li>
+          </ul>
+        </div>
+        <div class="shot-card">
+          <h3>🎾 Drive</h3>
+          <ul>
+            <li><strong>Contact:</strong> Flat chest height</li>
+            <li><strong>Action:</strong> Quick push across net</li>
+          </ul>
+        </div>
+        <div class="shot-card">
+          <h3>🍃 Drop Shot</h3>
+          <ul>
+            <li><strong>Contact:</strong> High overhead disguising power</li>
+            <li><strong>Action:</strong> Soft decelerated touch</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="card card-blue">
+      <h2>🏆 My Journey & Growth</h2>
+      <p>My relationship with the sport evolved rapidly—from playing casually to recover energy to becoming a serious threat in competitive tournaments. Success did not come immediately; in the beginning, I lost almost every match I entered.</p>
+      <p>However, by treating every mistake as a lesson, I continuously refined my technique and built mental resilience until I began dominating matches.</p>
+    </section>
+
+    <section class="card card-green">
+      <h2>🧠 Reflections & Life Impact</h2>
+      <p>Badminton has given me so much more than physical endurance—it has sharpened my strategic thinking in chess and improved my understanding of physical movement and physics. I am extremely proud of taking that leap three years ago. Without my coach's initial encouragement, I would not be the competitor I am today.</p>
+    </section>
+
+    <section class="card card-yellow">
+      <h2>⭐ Rate My Blog Post</h2>
+      <p style="text-align: center;">How helpful or interesting was this post about badminton? Tap a star to leave your rating!</p>
+      
+      <div class="rating-wrapper">
+        <div class="star-rating" id="starContainer">
+          <span class="star" data-value="1">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="5">★</span>
+        </div>
+        <div class="rating-status" id="ratingStatus">Click a star to rate</div>
+      </div>
+    </section>
+
+    <section id="quiz" class="card card-purple">
+      <h2>🧠 Test Your Knowledge: 5-Question Badminton Quiz</h2>
+      <p>Answer these 5 questions based on the blog to test your knowledge!</p>
+
+      <div class="quiz-item" data-q="1" data-correct="21">
+        <div class="quiz-question">1. Standard score required to win a set in badminton is:</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 1)">15 points</div>
+          <div class="quiz-option" onclick="selectOption(this, 1)">21 points</div>
+          <div class="quiz-option" onclick="selectOption(this, 1)">25 points</div>
+        </div>
+      </div>
+
+      <div class="quiz-item" data-q="2" data-correct="2">
+        <div class="quiz-question">2. During a 20–20 tiebreak, how many points lead must a player secure to win?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 2)">1 point</div>
+          <div class="quiz-option" onclick="selectOption(this, 2)">2 points</div>
+          <div class="quiz-option" onclick="selectOption(this, 2)">3 points</div>
+        </div>
+      </div>
+
+      <div class="quiz-item" data-q="3" data-correct="Peak reach overhead">
+        <div class="quiz-question">3. Where is the ideal contact point to strike a powerful downward smash?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 3)">Chest height</div>
+          <div class="quiz-option" onclick="selectOption(this, 3)">Below knee height</div>
+          <div class="quiz-option" onclick="selectOption(this, 3)">Peak reach overhead</div>
+        </div>
+      </div>
+
+      <div class="quiz-item" data-q="4" data-correct="Chess">
+        <div class="quiz-question">4. Which sport was Phúc Thanh competing in before switching to badminton?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 4)">Chess</div>
+          <div class="quiz-option" onclick="selectOption(this, 4)">Swimming</div>
+          <div class="quiz-option" onclick="selectOption(this, 4)">Basketball</div>
+        </div>
+      </div>
+
+      <div class="quiz-item" data-q="5" data-correct="30">
+        <div class="quiz-question">5. What is the maximum score cap during an extended tiebreak set?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 5)">28 points</div>
+          <div class="quiz-option" onclick="selectOption(this, 5)">30 points</div>
+          <div class="quiz-option" onclick="selectOption(this, 5)">35 points</div>
+        </div>
+      </div>
+
+      <button class="btn-submit" onclick="checkQuizScore()">Submit Quiz Answers 🏸</button>
+      <div id="quizScoreDisplay" class="quiz-score"></div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Phúc Thanh. Personal Blog Project for ESL Stage 10 IGCSE.</p>
+  </footer>
+
+  <script>
+    // Rating Script
+    const stars = document.querySelectorAll('.star');
+    const statusText = document.getElementById('ratingStatus');
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const value = parseInt(star.getAttribute('data-value'));
+        stars.forEach((s, idx) => {
+          if (idx < value) s.classList.add('active');
+          else s.classList.remove('active');
+        });
+        const messages = [
+          "Thanks! Every player starts somewhere! 🏸",
+          "Thank you for the feedback! 👍",
+          "Glad you enjoyed reading it! 🏸",
+          "Awesome! Glad you liked the blog! 🏆",
+          "Smashing! Thank you for the 5-star rating! 💥🏸"
+        ];
+        statusText.innerText = messages[value - 1];
+      });
+    });
+
+    // Quiz Selection Script
+    const userAnswers = {};
+
+    function selectOption(element, qNum) {
+      const parent = element.parentElement;
+      const options = parent.querySelectorAll('.quiz-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+      element.classList.add('selected');
+      userAnswers[qNum] = element.innerText.trim();
+    }
+
+    function checkQuizScore() {
+      const items = document.querySelectorAll('.quiz-item');
+      let score = 0;
+
+      items.forEach(item => {
+        const qNum = item.getAttribute('data-q');
+        const correct = item.getAttribute('data-correct').toLowerCase();
+        const userChoice = (userAnswers[qNum] || "").toLowerCase();
+
+        if (userChoice.includes(correct)) {
+          score++;
+          item.style.borderColor = "#10b981";
+        } else {
+          item.style.borderColor = "#ef4444";
+        }
+      });
+
+      const display = document.getElementById('quizScoreDisplay');
+      display.style.display = 'block';
+      if (score === 5) {
+        display.style.background = "#d1fae5";
+        display.style.color = "#065f46";
+        display.innerText = `🏆 Perfect Score! You got ${score}/5 correct! Fantastic job!`;
+      } else {
+        display.style.background = "#fef3c7";
+        display.style.color = "#92400e";
+        display.innerText = `🏸 You scored ${score}/5! Review the green boxes to see your correct answers!`;
+      }
+    }
+  </script>
+
+</body>
+</html>
